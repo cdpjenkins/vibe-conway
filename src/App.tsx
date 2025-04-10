@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
+import { patterns, Pattern, getPatternGrid } from './patterns'
 
 const GRID_SIZE = 50
 const CELL_SIZE = 15
@@ -41,9 +42,24 @@ function nextGeneration(grid: Grid): Grid {
   return newGrid
 }
 
+function placePattern(grid: Grid, pattern: boolean[][], startX: number, startY: number): Grid {
+  const newGrid = [...grid]
+  for (let x = 0; x < pattern.length; x++) {
+    for (let y = 0; y < pattern[x].length; y++) {
+      const gridX = startX + x
+      const gridY = startY + y
+      if (gridX >= 0 && gridX < GRID_SIZE && gridY >= 0 && gridY < GRID_SIZE) {
+        newGrid[gridX][gridY] = pattern[x][y]
+      }
+    }
+  }
+  return newGrid
+}
+
 function App() {
   const [grid, setGrid] = useState<Grid>(createEmptyGrid())
   const [running, setRunning] = useState(false)
+  const [selectedPattern, setSelectedPattern] = useState<Pattern | null>(null)
 
   const toggleCell = (x: number, y: number) => {
     const newGrid = [...grid]
@@ -55,6 +71,15 @@ function App() {
     if (!running) return
     setGrid(nextGeneration)
   }, [running])
+
+  const handlePatternSelect = (pattern: Pattern) => {
+    setSelectedPattern(pattern)
+    // Center the pattern in the grid
+    const patternGrid = getPatternGrid(pattern)
+    const startX = Math.floor((GRID_SIZE - patternGrid.length) / 2)
+    const startY = Math.floor((GRID_SIZE - patternGrid[0].length) / 2)
+    setGrid(placePattern(createEmptyGrid(), patternGrid, startX, startY))
+  }
 
   useEffect(() => {
     const interval = setInterval(runSimulation, SPEED)
@@ -69,7 +94,26 @@ function App() {
           {running ? 'Stop' : 'Start'}
         </button>
         <button onClick={() => setGrid(createEmptyGrid())}>Clear</button>
+        <select
+          value={selectedPattern?.name || ''}
+          onChange={(e) => {
+            const pattern = patterns.find(p => p.name === e.target.value)
+            if (pattern) handlePatternSelect(pattern)
+          }}
+        >
+          <option value="">Select a pattern</option>
+          {patterns.map((pattern) => (
+            <option key={pattern.name} value={pattern.name}>
+              {pattern.name}
+            </option>
+          ))}
+        </select>
       </div>
+      {selectedPattern && (
+        <div className="pattern-description">
+          {selectedPattern.description}
+        </div>
+      )}
       <div
         className="grid"
         style={{
