@@ -74,10 +74,10 @@ export const patterns: Pattern[] = [
   {
     name: "Spaceship",
     pattern: [
-      ".OO..",
-      "O...O",
+      ".O.O.",
       "O....",
-      "O...O"
+      "O...O",
+      "OOOO."
     ],
     description: "A lightweight spaceship (LWSS) that moves horizontally",
   },

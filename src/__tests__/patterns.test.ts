@@ -75,33 +75,33 @@ describe('Pattern Functions', () => {
         expect(grid[0].length).toBe(5);
 
         // Check specific cells for the LWSS pattern
-        // First row: .OO..
+        // First row: .O.O.
         expect(grid[0][0]).toBe(false);
         expect(grid[0][1]).toBe(true);
-        expect(grid[0][2]).toBe(true);
-        expect(grid[0][3]).toBe(false);
+        expect(grid[0][2]).toBe(false);
+        expect(grid[0][3]).toBe(true);
         expect(grid[0][4]).toBe(false);
 
-        // Second row: O...O
+        // Second row: O....
         expect(grid[1][0]).toBe(true);
         expect(grid[1][1]).toBe(false);
         expect(grid[1][2]).toBe(false);
         expect(grid[1][3]).toBe(false);
-        expect(grid[1][4]).toBe(true);
+        expect(grid[1][4]).toBe(false);
 
-        // Third row: O....
+        // Third row: O...O
         expect(grid[2][0]).toBe(true);
         expect(grid[2][1]).toBe(false);
         expect(grid[2][2]).toBe(false);
         expect(grid[2][3]).toBe(false);
-        expect(grid[2][4]).toBe(false);
+        expect(grid[2][4]).toBe(true);
 
-        // Fourth row: O...O
+        // Fourth row: OOOO.
         expect(grid[3][0]).toBe(true);
-        expect(grid[3][1]).toBe(false);
-        expect(grid[3][2]).toBe(false);
-        expect(grid[3][3]).toBe(false);
-        expect(grid[3][4]).toBe(true);
+        expect(grid[3][1]).toBe(true);
+        expect(grid[3][2]).toBe(true);
+        expect(grid[3][3]).toBe(true);
+        expect(grid[3][4]).toBe(false);
       }
     });
 
