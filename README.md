@@ -21,8 +21,19 @@ This project was created using:
 - TypeScript
 - Vite
 
+### Testing
+
+The project includes unit tests using:
+- Jest
+- React Testing Library
+
+To run the tests:
+```bash
+npm test
+```
+
 ## Credits
 
-All code in this project was written by AI agents (Cursor and Junie). No human coding was involved in the development
+This project was written by AI agents (Cursor and Junie). Very little human coding was involved in the development
 of this implementation. (Unless you count the human coding that doubtless went into creating the implementations of
 Conway's Game of Life upon which the language models were, no doubt, trained.)

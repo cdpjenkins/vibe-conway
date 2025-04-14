@@ -93,7 +93,10 @@ function App() {
         <button onClick={() => setRunning(!running)}>
           {running ? 'Stop' : 'Start'}
         </button>
-        <button onClick={() => setGrid(createEmptyGrid())}>Clear</button>
+        <button onClick={() => {
+                  setGrid(createEmptyGrid());
+                  setSelectedPattern(null);
+                }}>Clear</button>
         <select
           value={selectedPattern?.name || ''}
           onChange={(e) => {
