@@ -12,6 +12,7 @@ This is a simple implementation of Conway's Game of Life built with React and Ty
   - Beacon
   - Gosper Glider Gun
   - Pulsar
+  - Spaceship (Lightweight Spaceship/LWSS)
 - Click on cells to toggle their state
 
 ## Development

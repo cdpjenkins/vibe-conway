@@ -71,6 +71,16 @@ export const patterns: Pattern[] = [
     ],
     description: "A period-3 oscillator",
   },
+  {
+    name: "Spaceship",
+    pattern: [
+      ".OO..",
+      "O...O",
+      "O....",
+      "O...O"
+    ],
+    description: "A lightweight spaceship (LWSS) that moves horizontally",
+  },
 ];
 
 export function getPatternGrid(pattern: Pattern): boolean[][] {
